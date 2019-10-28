@@ -3,7 +3,10 @@ var weather;
 var api = "http://api.openweathermap.org/data/2.5/weather?q=";
 var apiKey ="&appid=41cab2f5c3797b1e479e74b4fb3f4bde";
 
+// function preload() {
 
+//     fontBold = loadFont('radiance-black.otf');
+//   }
 
 
 
@@ -14,20 +17,32 @@ function setup(){
 
 
     //p5.speech 魔改
-    // let lang = navigator.language || 'en-US';
-    // let speechRec = new p5.SpeechRec(lang, gotSpeech);
-    // speechRec.start();
+   
+//     var foo = new p5.SpeechRec(); // speech recognition object (will prompt for mic access)
+// foo.onResult = showResult; // bind callback function to trigger when speech is recognized
+// foo.start(); // start listening
 
+    let lang = navigator.language || 'en-US';
+    let speechRec = new p5.SpeechRec(lang, gotSpeech);
+    speechRec.start();
+  
     var button = select('#submit');
     button.mousePressed(weatherAsk);
     input = select('#city');
-    var foo = new p5.Speech(); // speech synthesis object
-    foo.speak('I dont care who you are.'); // say something
+    // var foo = new p5.Speech(); // speech synthesis object
+    // foo.speak('I dont care who you are.'); // say something
+
 }
 
-// function gotSpeech(){
-//     console.log('works?');
-// }
+function gotSpeech(){
+    // textSize(32);
+    // textAlign(CENTER);
+    // text(speechRec.resultString, width/2, height/2);
+    console.log(speechRec);
+}
+
+
+
 
 
 function weatherAsk(){
@@ -45,6 +60,15 @@ function gotData(data){
 function draw(){
   
     background(0);
+
+    // var myRec = new p5.SpeechRec(); // new P5.SpeechRec object
+
+    // textFont(fontBold);
+    // textSize(32);
+	// 	textAlign(CENTER);
+	// 	text("say something", width/2, height/2);
+	// 	myRec.onResult = showResult;
+	// 	myRec.start();
 
     if (weather){
         // fill(weather.main.temp/2,weather.coord.lat*2,weather.main.humidity*1.5);
@@ -72,3 +96,11 @@ function draw(){
 }
 
 
+// function showResult()
+// 	{
+// 		if(myRec.resultValue==true) {
+// 			background(192, 255, 192);
+// 			text(myRec.resultString, width/2, height/2);
+// 			console.log(myRec.resultString);
+// 		}
+// 	}
